@@ -1,0 +1,62 @@
+/**********************************************************************************
+
+	Project Name: Laravel project
+	Project Description: 
+	File Name: styles.css
+	Author: Nick Eremia
+	Version: 1.0.0
+
+**********************************************************************************/
+@import "reset.css";
+@import "typography.css";
+
+
+
+body {
+    height: 100%;
+    width: 100%;
+    background: #fff url('../images/lijfconcept-v10_bg.jpg') no-repeat center center;
+    font-family: 'OpenSans-Regular', sans-serif;
+    font-size: 15px;
+}
+
+a {
+    cursor: pointer;
+    outline: 0;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+    border: none;
+}
+
+li {
+    /*display: inline;*/
+    list-style-type: none;
+}
+
+.container {
+    margin: auto;
+    max-width: 1170px;
+}
+
+/***********************************************************************************************/
+/* HEADER */
+/***********************************************************************************************/
+
+
+
+#page-wrappe{
+    float: right;
+}
+
+.navbar-right{
+    display: block;
+    float: right;
+}
