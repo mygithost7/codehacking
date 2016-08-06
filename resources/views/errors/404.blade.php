@@ -2,5 +2,6 @@
 
 @section('content')
 
-    <h1>Edite Post</h1>
+<h1 class="text-center">Opps no Page available</h1>
+
 @stop

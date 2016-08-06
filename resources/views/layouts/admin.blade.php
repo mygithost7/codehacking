@@ -10,7 +10,7 @@
 
     <link href="/css/style.css" rel="stylesheet">
     <!-- Bootstrap -->
-    <link href="https://cdn.ncsu.edu/brand-assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    {{--<link href="https://cdn.ncsu.edu/brand-assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">--}}
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -18,7 +18,8 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 </head>
 <body id="admin-page">
 
@@ -36,6 +37,26 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/">Home</a>
+                <div class="pull-right">
+                <!-- Right Side Of Navbar -->
+                <ul class="nav navbar-nav navbar-right pull-right">
+                    <!-- Authentication Links -->
+                    @if (Auth::guest())
+                        <li><a href="{{ url('/login') }}">Login</a></li>
+                        <li><a href="{{ url('/register') }}">Register</a></li>
+                    @else
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                            </ul>
+                        </li>
+                    @endif
+                </ul>
+                </div>
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
@@ -82,8 +103,8 @@
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i>Posts<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li><a href="/users">All Posts</a></li>
-                                <li><a href="/users/create">Create Post</a></li>
+                                <li><a href="{{route('admin.posts.index')}}">All Posts</a></li>
+                                <li><a href="{{route('admin.posts.create')}}">Create Post</a></li>
                             </ul>
                         </li>
                         <li>
@@ -205,10 +226,10 @@
                             <a href="#"><i class="fa fa-wrench fa-fw"></i>Posts<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="">All Posts</a>
+                                    <a href="{{route('admin.posts.index')}}">All Posts</a>
                                 </li>
                                 <li>
-                                    <a href="">Create Post</a>
+                                    <a href="{{route('admin.posts.create')}}">Create Post</a>
                                 </li>
 
 
@@ -236,8 +257,14 @@
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+
+<!-- JavaScripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+{{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="https://cdn.ncsu.edu/brand-assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 @yield('footer')
 
