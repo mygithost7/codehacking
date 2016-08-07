@@ -6,6 +6,7 @@ use App\Category;
 use App\Http\Requests\PostCreateRequest;
 use App\Photo;
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -98,6 +99,11 @@ class AdminPostsController extends Controller
     public function edit($id)
     {
         //
+        $post = Post::findOrFail($id);
+        $categories = Category::lists('name','id')->all();
+
+
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -110,6 +116,27 @@ class AdminPostsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $input = $request->all();
+
+        if($file = $request->file('photo_id')){
+            //return 'its work!';
+
+            //save name of photo with timestamp
+            $name = time() . $file->getClientOriginalName();
+            //will create a images folder for us in public directory
+            $file->move('images', $name);
+            //add in photo table name photo
+            $photo = Photo::create(['file'=>$name]);//showd be array
+            //add photo id in photo_id field table
+            $input['photo_id'] = $photo->id;
+
+        }
+
+
+
+        Auth::user()->posts()->whereId($id)->first()->update($input);
+
+        return redirect('/admin/posts');
     }
 
     /**
@@ -121,5 +148,16 @@ class AdminPostsController extends Controller
     public function destroy($id)
     {
         //
+
+        $post = Post::findOrFail($id);
+
+        unlink(public_path() . $post->photo->file);
+
+        $post->delete();
+
+        Session::flash('deleted_post', 'The post has been deleted');
+
+        return redirect('/admin/posts');
+
     }
 }
