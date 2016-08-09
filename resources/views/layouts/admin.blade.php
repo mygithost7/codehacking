@@ -20,6 +20,8 @@
     <![endif]-->
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    @yield('styles')
 </head>
 <body id="admin-page">
 
@@ -111,14 +113,14 @@
                             <a href="#"><i class="fa fa-wrench fa-fw"></i>Categories<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li><a href="{{route('admin.categories.index')}}">All Categories</a></li>
-                                <li><a href="{{route('admin.categories.create')}}">Create Category</a></li>
+                                <li><a href="{{route('admin.categories.index')}}">Create Category</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i>Media<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li><a href="/users">All Media</a></li>
-                                <li><a href="/users/create">Upload Media</a></li>
+                                <li><a href="{{route('admin.media.index')}}">All Media</a></li>
+                                <li><a href="{{route('admin.media.create')}}">Upload Media</a></li>
                             </ul>
                         </li>
                         <li>
@@ -266,7 +268,7 @@
 <script src="https://cdn.ncsu.edu/brand-assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-@yield('footer')
+@yield('scripts')
 
 
 </body>
